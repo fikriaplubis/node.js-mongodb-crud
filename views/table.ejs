@@ -1,0 +1,68 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm"
+        data-toggle="modal"
+        data-target="#add-modal"
+      >
+        Add
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Produk</th>
+              <th>Keterangan</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i < produk.length; i++){ %>
+                <tr>
+                  <td><%= i +1 %></td>
+                  <td><%= produk[i].nama_produk %></td>
+                  <td><%= produk[i].keterangan %></td>
+                  <td><%= produk[i].harga %></td>
+                  <td><%= produk[i].jumlah %></td>
+                  <td class="text-center">
+                    <form 
+                      action="/produk/<%= produk[i].id %>?_method=DELETE"
+                      method="POST"
+                    >
+                      <a
+                        href="javascript:void()"
+                        class="btn btn-outline-warning btn-sm button-update"
+                        data-id="<%= produk[i].id %>"
+                        data-nama_produk="<%= produk[i].nama_produk %>"
+                        data-keterangan="<%= produk[i].keterangan %>"
+                        data-harga="<%= produk[i].harga %>"
+                        data-jumlah="<%= produk[i].jumlah %>"
+                        >Edit
+                      </a>
+                      <button 
+                        type="submit" 
+                        class="btn btn-outline-danger btn-sm"
+                        onclick="return confirm('Yakin ingin menghapus data produk?');"
+                      >
+                        Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                <% } %>
+          </tbody>
+        </table>
+    </div>
+</div>
